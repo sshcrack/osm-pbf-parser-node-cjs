@@ -2,7 +2,7 @@ const { Transform } = require('node:stream');
 const { inflateSync } = require('node:zlib');
 const { createReadStream } = require('node:fs');
 const Pbf = require('pbf');
-const { Blob as BlobData, BlobHeader } = require('./proto/fileformat.js');
+const { Blob: BlobData, BlobHeader } = require('./proto/fileformat.js');
 const { HeaderBlock, PrimitiveBlock } = require('./proto/osmformat.js');
 
 const debug = false;     // print some stats
@@ -33,7 +33,7 @@ function isEmpty(obj) {
     return true;
 }
 
-export class OSMTransform extends Transform {
+class OSMTransform extends Transform {
     constructor(osmopts = { withTags: true, withInfo: false }, opts = {}) {
         super(Object.assign({}, opts, {
             writableObjectMode: false,
@@ -163,7 +163,7 @@ function with_tags(opt) {
  * @param {Buffer} buf Inflated OSMData block
  * @param {OSMTransform | OSMOptions} that
  */
-export function parse(buf, that) {
+function parse(buf, that) {
     const data = PrimitiveBlock.read(new Pbf(buf));
     if (that instanceof OSMTransform) {
         data.withTags = that.with.withTags;
@@ -375,11 +375,17 @@ function fill_info(data, info) {
     return ret;
 }
 
-export async function* createOSMStream(file, opts) {
+async function* createOSMStream(file, opts) {
     const readable = createReadStream(file)
         .pipe(new OSMTransform(opts));
     for await (const chunk of readable) {
             for (const item of chunk)
                 yield item;
     }
+}
+
+module.exports = {
+    createOSMStream,
+    parse,
+    OSMTransform
 }
