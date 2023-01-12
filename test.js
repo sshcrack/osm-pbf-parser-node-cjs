@@ -1,8 +1,8 @@
-import { createReadStream } from 'node:fs';
-import { Transform, Writable } from 'node:stream';
-import { createOSMStream, OSMTransform, parse } from './parser.js';
-import { get as http_get } from 'node:http';
-import { inflateSync } from 'node:zlib';
+const { createReadStream } = require('node:fs');
+const { Transform, Writable } = require('node:stream');
+const { createOSMStream, OSMTransform, parse } = require('./parser.js');
+const { get: http_get } = require('node:http');
+const { inflateSync } = require('node:zlib');
 
 // feel free to change the following three settings
 
@@ -161,4 +161,8 @@ try {
     }
 } catch (err) {
     process.stderr.write(err.message || err);
+}
+
+module.exports = {
+
 }

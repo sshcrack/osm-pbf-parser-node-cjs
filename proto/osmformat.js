@@ -2,7 +2,7 @@
 
 // HeaderBlock ========================================
 
-export var HeaderBlock = {};
+var HeaderBlock = {};
 
 HeaderBlock.read = function (pbf, end) {
     return pbf.readFields(HeaderBlock._readField, {bbox: null, required_features: [], optional_features: [], writingprogram: "", source: "", osmosis_replication_timestamp: 0, osmosis_replication_sequence_number: 0, osmosis_replication_base_url: ""}, end);
@@ -30,7 +30,7 @@ HeaderBlock.write = function (obj, pbf) {
 
 // HeaderBBox ========================================
 
-export var HeaderBBox = {};
+var HeaderBBox = {};
 
 HeaderBBox.read = function (pbf, end) {
     return pbf.readFields(HeaderBBox._readField, {left: 0, right: 0, top: 0, bottom: 0}, end);
@@ -50,7 +50,7 @@ HeaderBBox.write = function (obj, pbf) {
 
 // PrimitiveBlock ========================================
 
-export var PrimitiveBlock = {};
+var PrimitiveBlock = {};
 
 PrimitiveBlock.read = function (pbf, end) {
     return pbf.readFields(PrimitiveBlock._readField, {stringtable: null, primitivegroup: [], granularity: 100, lat_offset: 0, lon_offset: 0, date_granularity: 1000}, end);
@@ -74,7 +74,7 @@ PrimitiveBlock.write = function (obj, pbf) {
 
 // PrimitiveGroup ========================================
 
-export var PrimitiveGroup = {};
+var PrimitiveGroup = {};
 
 PrimitiveGroup.read = function (pbf, end) {
     return pbf.readFields(PrimitiveGroup._readField, {nodes: [], dense: null, ways: [], relations: [], changesets: []}, end);
@@ -96,7 +96,7 @@ PrimitiveGroup.write = function (obj, pbf) {
 
 // StringTable ========================================
 
-export var StringTable = {};
+var StringTable = {};
 
 StringTable.read = function (pbf, end) {
     return pbf.readFields(StringTable._readField, {s: []}, end);
@@ -110,7 +110,7 @@ StringTable.write = function (obj, pbf) {
 
 // Info ========================================
 
-export var Info = {};
+var Info = {};
 
 Info.read = function (pbf, end) {
     return pbf.readFields(Info._readField, {version: -1, timestamp: 0, changeset: 0, uid: 0, user_sid: 0, visible: false}, end);
@@ -134,7 +134,7 @@ Info.write = function (obj, pbf) {
 
 // DenseInfo ========================================
 
-export var DenseInfo = {};
+var DenseInfo = {};
 
 DenseInfo.read = function (pbf, end) {
     return pbf.readFields(DenseInfo._readField, {version: [], timestamp: [], changeset: [], uid: [], user_sid: [], visible: []}, end);
@@ -158,7 +158,7 @@ DenseInfo.write = function (obj, pbf) {
 
 // ChangeSet ========================================
 
-export var ChangeSet = {};
+var ChangeSet = {};
 
 ChangeSet.read = function (pbf, end) {
     return pbf.readFields(ChangeSet._readField, {id: 0}, end);
@@ -172,7 +172,7 @@ ChangeSet.write = function (obj, pbf) {
 
 // Node ========================================
 
-export var Node = {};
+var Node = {};
 
 Node.read = function (pbf, end) {
     return pbf.readFields(Node._readField, {id: 0, keys: [], vals: [], info: null, lat: 0, lon: 0}, end);
@@ -196,7 +196,7 @@ Node.write = function (obj, pbf) {
 
 // DenseNodes ========================================
 
-export var DenseNodes = {};
+var DenseNodes = {};
 
 DenseNodes.read = function (pbf, end) {
     return pbf.readFields(DenseNodes._readField, {id: [], denseinfo: null, lat: [], lon: [], keys_vals: []}, end);
@@ -218,7 +218,7 @@ DenseNodes.write = function (obj, pbf) {
 
 // Way ========================================
 
-export var Way = {};
+var Way = {};
 
 Way.read = function (pbf, end) {
     return pbf.readFields(Way._readField, {id: 0, keys: [], vals: [], info: null, refs: [], lat: [], lon: []}, end);
@@ -244,7 +244,7 @@ Way.write = function (obj, pbf) {
 
 // Relation ========================================
 
-export var Relation = {};
+var Relation = {};
 
 Relation.read = function (pbf, end) {
     return pbf.readFields(Relation._readField, {id: 0, keys: [], vals: [], info: null, roles_sid: [], memids: [], types: []}, end);
@@ -282,3 +282,19 @@ Relation.MemberType = {
         "options": {}
     }
 };
+
+
+module.exports = {
+    HeaderBlock,
+    HeaderBBox,
+    PrimitiveBlock,
+    PrimitiveGroup,
+    StringTable,
+    Info,
+    DenseInfo,
+    ChangeSet,
+    Node,
+    DenseNodes,
+    Way,
+    Relation
+}

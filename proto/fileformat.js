@@ -2,7 +2,7 @@
 
 // Blob ========================================
 
-export var Blob = {};
+var Blob = {};
 
 Blob.read = function (pbf, end) {
     return pbf.readFields(Blob._readField, {raw_size: 0, raw: null, data: null, zlib_data: null, lzma_data: null, OBSOLETE_bzip2_data: null, lz4_data: null, zstd_data: null}, end);
@@ -28,7 +28,7 @@ Blob.write = function (obj, pbf) {
 
 // BlobHeader ========================================
 
-export var BlobHeader = {};
+var BlobHeader = {};
 
 BlobHeader.read = function (pbf, end) {
     return pbf.readFields(BlobHeader._readField, {type: "", indexdata: null, datasize: 0}, end);
@@ -43,3 +43,8 @@ BlobHeader.write = function (obj, pbf) {
     if (obj.indexdata) pbf.writeBytesField(2, obj.indexdata);
     if (obj.datasize) pbf.writeVarintField(3, obj.datasize);
 };
+
+module.exports = {
+    Blob,
+    BlobHeader
+}
