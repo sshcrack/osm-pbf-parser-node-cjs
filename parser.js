@@ -1,9 +1,9 @@
-import { Transform } from 'node:stream';
-import { inflateSync } from 'node:zlib';
-import { createReadStream } from 'node:fs';
-import Pbf from 'pbf';
-import { Blob as BlobData, BlobHeader } from './proto/fileformat.js';
-import { HeaderBlock, PrimitiveBlock } from './proto/osmformat.js';
+const { Transform } = require('node:stream');
+const { inflateSync } = require('node:zlib');
+const { createReadStream } = require('node:fs');
+const Pbf = require('pbf');
+const { Blob as BlobData, BlobHeader } = require('./proto/fileformat.js');
+const { HeaderBlock, PrimitiveBlock } = require('./proto/osmformat.js');
 
 const debug = false;     // print some stats
 
